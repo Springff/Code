@@ -1,5 +1,6 @@
 class Solution(object):
     def threeSum(self, nums):
+        # 暴力求解，3次遍历，时间复杂度O（N3）
         """
         :type nums: List[int]
         :rtype: List[List[int]]
