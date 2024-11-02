@@ -1,0 +1,21 @@
+class Solution(object):
+    def threeSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        length = len(nums)
+        m = 0        
+        ans = []
+        for m in range(length-2):
+            n = length-1
+            while m+1<n:
+                h = nums[m]+nums[n]
+                for i in range(m+1,n):
+                    if h+nums[i]==0:
+                        key = [nums[m],nums[i],nums[n]]
+                        key = sorted(key)
+                        if key not in ans:
+                           ans.append(key)
+                n-=1
+        return ans
