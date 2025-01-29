@@ -22,3 +22,14 @@ class Solution(object):
             stack.append(i)
         
         return t
+    
+import pandas as pd
+
+
+import sys
+a = sys.stdin.readline().strip()
+a = list(map(int,a.split(',')))
+
+solution = Solution()
+answer  =  solution.trap(a)
+print(answer)
