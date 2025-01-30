@@ -44,7 +44,6 @@ class Solution(object):
             if char in char_map and star <= char_map[char]:
                 star = char_map[char]+1
             else:
-                
                 max_string = max(max_string,end - star + 1)
             char_map[char] = end
         
