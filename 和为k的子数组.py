@@ -38,7 +38,7 @@ class Solution(object):
 
         for i in nums:
             sum += i
-            if sum==k:
+            if sum==k:## 这个判断是否有更好的选择，有，初始哈希表中，加入{0：1}即可，减少判断时间
                 counts+=1
             if sum-k in map:
                 counts+=map[sum-k]
