@@ -5,7 +5,9 @@ class Solution():
         # 先对intervals中区间按左区间进行排序，逐个检查是否可以合并
 
         output = []
+        ################################
         intervals.sort(key=lambda x:x[0])
+        ##################################
         inter = intervals[0]
 
         for i in range(1,len(intervals)):
