@@ -29,8 +29,8 @@ while True:
 
 # 简易输入
 
-a = input().split(',')
-a = list(map(int,a))
+a = input()
+a = list(map(int,a.split(',')))
 
 data = []
 while True:
