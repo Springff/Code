@@ -1,10 +1,10 @@
 # 给你一个链表，两两交换其中相邻的节点，并返回交换后链表的头节点。你必须在不修改节点内部的值的情况下完成本题（即，只能进行节点交换）。
 
 # Definition for singly-linked list.
-# class ListNode(object):
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
+class ListNode(object):
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 class Solution(object):
     def swapPairs(self, head):
         """
@@ -37,3 +37,23 @@ class Solution(object):
             last = pre.next.next
         return head
 
+    def virtualNode(self, head):
+        """
+        :type head: Optional[ListNode]
+        :rtype: Optional[ListNode]
+        """
+        # 增加一个虚拟节点来规范代码
+        virt = ListNode()
+        virt.next = head
+        pre = virt
+
+        while pre.next and pre.next.next:
+            mid = pre.next
+            last = mid.next
+
+            pre.next = last
+            mid.next = last.next
+            last.next = mid
+
+            pre = pre.next.next
+        return virt.next
