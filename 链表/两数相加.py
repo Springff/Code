@@ -120,3 +120,31 @@ class Solution(object):
         ans = ans.next
         return ans
             
+l1 = ListNode()
+p = l1
+while True:
+    a = input('输入第一个数：')
+    if a == '':
+        break
+    a = ListNode(int(a))
+    p.next = a
+    p = p.next
+l1 = l1.next
+
+l2 = ListNode()
+p = l2
+while True:
+    a = input('输入第二个数：')
+    if a == '':
+        break
+    a = ListNode(int(a))
+    p.next = a
+    p = p.next
+l2 = l2.next
+
+
+solution = Solution()
+ans = solution.AddTwoNum(l1,l2)
+while ans:
+    print(ans.val)
+    ans = ans.next
