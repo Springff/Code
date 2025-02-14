@@ -29,6 +29,54 @@ class Solution(object):
             
         return out.next
     
+    def digui_sortList(self, head):
+        """
+        :type head: Optional[ListNode]
+        :rtype: Optional[ListNode]
+        """
+        # 找到链表的中点，递归寻找排序两段链表
+        # 融合链表
+        
+        if not head or not head.next:
+            return head
+        
+        slow = head
+        fast = head.next
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        mid = slow.next
+        slow.next = None
+        left = self.digui_sortList(head)
+        right = self.digui_sortList(mid)
+        return self.merge(left,right)
+
+    def merge(self,head1, head2):
+        # 合并两个有序链表
+        p1 = head1
+        p2 = head2
+        ans = ListNode()
+        q = ans
+        while p1 and p2:
+            if p1.val<p2.val:
+                q.next = p1
+                q = q.next
+                p1 = p1.next
+            else:
+                q.next = p2
+                q = q.next
+                p2 = p2.next
+            
+        if p1:
+            q.next = p1
+            
+        if p2:
+            q.next = p2
+
+        
+        return ans.next
+
+
 
 head = ListNode()
 p = head
