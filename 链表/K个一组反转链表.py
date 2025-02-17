@@ -1,3 +1,7 @@
+### 经验:如果一个节点后边需要用到，一定要提前保存，特别是某个节点的next
+
+
+
 # Definition for singly-linked list.
 class ListNode:
     def __init__(self, val=0, next=None):
