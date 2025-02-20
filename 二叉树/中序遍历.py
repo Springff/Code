@@ -24,7 +24,7 @@ class Solution(object):
         out.append(root.val)
         self.inorder(root.right,out)
         
-  def diedai(self, root):
+    def diedai(self, root):
         """
         :type root: Optional[TreeNode]
         :rtype: List[int]
