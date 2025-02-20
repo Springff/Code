@@ -1,7 +1,7 @@
-
 # 给定一个二叉树 root ，返回其最大深度。
-
 # 二叉树的 最大深度 是指从根节点到最远叶子节点的最长路径上的节点数。
+
+# 经验：在递归时，整数型变量如果不返回，值是不会保存的；数组修改后可以保存
 
 # Definition for a binary tree node.
 class TreeNode(object):
