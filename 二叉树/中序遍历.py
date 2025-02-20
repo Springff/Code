@@ -24,3 +24,21 @@ class Solution(object):
         out.append(root.val)
         self.inorder(root.right,out)
         
+  def diedai(self, root):
+        """
+        :type root: Optional[TreeNode]
+        :rtype: List[int]
+        """
+        # 迭代遍历，用栈来保存待遍历的节点
+
+        stack = []
+        out = []
+        curr = root
+        while curr or stack:
+            while curr:
+                stack.append(curr)
+                curr = curr.left
+            curr = stack.pop()
+            out.append(curr.val)
+            curr = curr.right
+        return out
