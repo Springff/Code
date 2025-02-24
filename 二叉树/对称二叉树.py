@@ -5,7 +5,7 @@ class TreeNode(object):
         self.left = left
         self.right = right
 class Solution(object):
-    def isSymmetric(self, root):
+    def isSymmetric1(self, root):
         """
         :type root: Optional[TreeNode]
         :rtype: bool
@@ -36,3 +36,18 @@ class Solution(object):
         self.Lastorder(root.right,out)
         out.append(root.val)
         self.Lastorder(root.left,out)
+    def isSymmetric(self, root):
+        """
+        :type root: Optional[TreeNode]
+        :rtype: bool
+        """
+        if not root:
+            return True
+        return self.duichen(root.left,root.right)
+
+    def duichen(self,left,right):
+        if not left and not right:
+            return True
+        if not left or not right:
+            return False
+        return (left.val==right.val) and self.duichen(left.left,right.right) and self.duichen(left.right,right.left)
