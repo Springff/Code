@@ -1,3 +1,5 @@
+# 经验：用队列可以代替递归
+
 # Definition for a binary tree node.
 class TreeNode(object):
     def __init__(self, val=0, left=None, right=None):
@@ -51,3 +53,36 @@ class Solution(object):
         if not left or not right:
             return False
         return (left.val==right.val) and self.duichen(left.left,right.right) and self.duichen(left.right,right.left)
+
+
+
+
+    def diedai(self, root):
+        """
+        :type root: Optional[TreeNode]
+        :rtype: bool
+        """
+        # 用一个队列来保存待检查的点
+        if not root:
+            return True
+
+        queue = []
+        queue.append(root.left)
+        queue.append(root.right)
+        while queue:
+            left = queue.pop(0)
+            right = queue.pop(0)
+            if not left and not right:
+                continue
+            if not left or not right:
+                return False
+            if left.val!=right.val:
+                return False
+            queue.append(left.left)
+            queue.append(right.right)
+            queue.append(left.right)
+            queue.append(right.left)
+        return True
+            
+
+
