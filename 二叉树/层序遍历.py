@@ -42,4 +42,35 @@ class Solution(object):
                 a-=1
             ans.append(out)
         return ans
+    
+    # 更高效的队列
+    from collections import deque
+
+    def levelOrder(self, root):
+        """
+        :type root: Optional[TreeNode]
+        :rtype: List[List[int]]
+        """
+        # 新建一个队列，保存要遍历的节点，维护一个k，表示该层要遍历的节点
+        # 不用维护k，直径用len（queue）
+        if not root:
+            return []
+        
+        ans = []
+        queue = deque()
+        queue.append(root)
+        while queue:
+            out = []
+            a = len(queue)
+            while a > 0:
+                q = queue.popleft()
+                out.append(q.val)
+                if q.left:
+                    queue.append(q.left)  
+                if q.right:
+                    queue.append(q.right)  
+                a-=1
+            ans.append(out)
+        return ans
+
 
