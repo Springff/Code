@@ -16,7 +16,7 @@ class Solution(object):
             return None
         # 递归的构建树的根节点
         length = len(nums)
-        num = int(length/2)
+        num = length//2
         root = TreeNode(nums[num])
         root.left = self.sortedArrayToBST(nums[:num])
         root.right = self.sortedArrayToBST(nums[num+1:])
