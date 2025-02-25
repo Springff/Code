@@ -67,7 +67,16 @@ def Levelorder(root):
     Level(root,0)
     return result
 
-nums = [1,2,3,4,5,6,7]
+nums = []
+while True:
+    a = input()
+    if a=='end':
+        break
+    if a=='':
+        nums.append(None)
+    else:
+        nums.append(int(a))
+
 root = BuildTree(nums)
 result = Levelorder(root)
 print(result)
