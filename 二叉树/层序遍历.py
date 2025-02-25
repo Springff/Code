@@ -1,6 +1,7 @@
 # 给你二叉树的根节点 root ，返回其节点值的 层序遍历 。 （即逐层地，从左到右访问所有节点）。
 
 # Definition for a binary tree node.
+from collections import deque
 class TreeNode(object):
     def __init__(self, val=0, left=None, right=None):
         self.val = val
@@ -44,7 +45,7 @@ class Solution(object):
         return ans
     
     # 更高效的队列
-    from collections import deque
+
 
     def levelOrder(self, root):
         """
