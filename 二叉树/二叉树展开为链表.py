@@ -35,3 +35,25 @@ class Solution(object):
         order.append(root)
         self.Preorder(root.left,order)
         self.Preorder(root.right,order)
+
+
+    def flatten_digui(self, root):
+        """
+        :type root: Optional[TreeNode]
+        :rtype: None Do not return anything, modify root in-place instead.
+        """
+
+        # 后序遍历二叉树，逐个处理每个节点，左节点加入到右边，左子树置空
+        # 递归空间复杂度肯定不是O(1)了
+        if not root:
+            return
+        self.flatten(root.left)
+        self.flatten(root.right)
+        temp = root.right
+        root.right = root.left
+        root.left = None
+        p = root
+        while p.right:
+            p = p.right
+        p.right = temp
+        return root
