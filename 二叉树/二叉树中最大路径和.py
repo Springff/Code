@@ -28,8 +28,8 @@ class Solution(object):
                 return 0
             left = Max(root.left)
             right = Max(root.right)
-            self.max = max(root.val,root.val+left,root.val+right,root.val+left+right,self.max)
-            return max(root.val,root.val+left,root.val+right,0)
+            self.max = max(root.val+left+right,self.max)
+            return max(root.val+left,root.val+right,0)
 
         max_num = Max(root)
         return self.max
