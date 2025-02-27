@@ -10,7 +10,7 @@
 #         self.left = left
 #         self.right = right
 class Solution(object):
-    def flatten(self, root):
+    def flatten1(self, root):
         """
         :type root: Optional[TreeNode]
         :rtype: None Do not return anything, modify root in-place instead.
@@ -56,4 +56,31 @@ class Solution(object):
         while p.right:
             p = p.right
         p.right = temp
+        return root
+
+    def flatten(self, root):
+        """
+        :type root: Optional[TreeNode]
+        :rtype: None Do not return anything, modify root in-place instead.
+        """
+
+        # 后序遍历二叉树，逐个处理每个节点，左节点加入到右边，左子树置空
+        # 递归空间复杂度肯定不是O(1)了
+        # 找当前节点左子树的最右节点，将右子树连接到左子树的最右节点
+        # 将左子树变为右子树，左子树置空
+        if not root:
+            return 
+        curr = root
+        while curr:
+            p = curr.left
+            if not p:
+                curr = curr.right
+                continue
+            while p.right:
+                p = p.right
+            p.right = curr.right
+            curr.right = curr.left
+            curr.left = None
+            curr = curr.right
+        
         return root
