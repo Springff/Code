@@ -29,3 +29,16 @@ class Solution(object):
         self.dfs(grid,r+1,c)
         self.dfs(grid,r,c-1)
         self.dfs(grid,r,c+1)
+
+import sys
+grid = []
+while True:
+    list = sys.stdin.readline().strip()
+    if list == '':
+        break
+    list = list.split(',')
+    grid.append(list)
+
+solution = Solution()
+ans = solution.numIslands(grid)
+print(ans)
