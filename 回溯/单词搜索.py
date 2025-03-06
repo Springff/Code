@@ -12,7 +12,7 @@ class Solution(object):
         """
         #使用深度优先遍历，将本位置置空，防止回退
         def dfs(i,j,k):
-            if k == len(word):
+            if k == len(word):# 什么时候用k，什么时候用k+1
                 return True
             if i<0 or i>=len(board) or j<0 or j>=len(board[0]) or word[k]!=board[i][j]:
                 return False
