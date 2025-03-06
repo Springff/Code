@@ -24,7 +24,7 @@ class Trie(object):
         """
         node = self.root 
         if word == '':
-            return root
+            return node
         for w in word:
             if w not in node.children:
                 node.children[w]=TrieNode()
