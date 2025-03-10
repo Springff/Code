@@ -34,3 +34,36 @@ class Solution(object):
         if largest!=i:
             nums[largest],nums[i] = nums[i],nums[largest]
             self.Build_D(nums,largest,n)
+
+
+    
+    def findKthLargest_kp(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        ##快排,用数组不用矩阵思路更清晰
+        
+        return self.QuickSort(nums,k)
+
+
+    def QuickSort(self,nums,k):
+        if len(nums)==1:
+            return nums[0]
+        right = len(nums)-1
+        left = 0
+        pivot_index = random.randint(left,right)
+        nums[right],nums[pivot_index] = nums[pivot_index],nums[right]
+        pivot = nums[right]
+        for i in range(len(nums)):
+            if nums[i]>pivot:
+                nums[left],nums[i]=nums[i],nums[left]
+                left+=1
+        nums[left],nums[right]=nums[right],nums[left]
+        if left==k-1:
+            return nums[left]
+        if left<k-1:# nums的选取范围要注意
+            return self.QuickSort(nums[left+1:],k-left-1)
+        else:
+            return self.QuickSort(nums[:left],k)
