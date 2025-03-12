@@ -52,5 +52,30 @@ class Solution(object):
                 temp=-temp
             if temp<self.mini:
                 self.mini = temp
+
+    def getMinimumDifference(self, root):
+        """
+        :type root: Optional[TreeNode]
+        :rtype: int
+        """
+        # 最小值存在与根节点与左树最右节点和右数最左节点之间
+        # 思路是对的，但实现过程还可以更优化，中序遍历
+        
+        self.mini = float('inf')
+        self.pre = float('inf')
+        self.Inorder(root)
+        return self.mini
+    def Inorder(self,root):
+        if not root:
+            return
+        self.Inorder(root.left)
+        temp = root.val-self.pre
+        if temp<0:
+            temp = -temp
+        if temp<self.mini:
+            self.mini = temp
+        self.pre = root.val
+        self.Inorder(root.right)
+
             
         
