@@ -5,6 +5,7 @@
 # 返回一个表示每个字符串片段的长度的列表。
 
 
+
 class Solution(object):
     def partitionLabels(self, s):
         """
@@ -14,23 +15,18 @@ class Solution(object):
         # 维护一个哈希表，保存每个字符出现的最远距离，遍历s进行分组
         h = {}
         for i in range(len(s)):
-            h[s[i]] = h.get(s[i],[])
-            h[s[i]].append(i)
-        
-        star = 0
-        length = 1
+            h[s[i]] = i
+           
+        length = 0
         out = []
-        while star<len(s):
-            end = h[s[star]][-1]
-            while star<end:
-                length+=1
-                if h[s[star]][-1]>end:
-                    end = h[s[star]][-1]
-                star+=1
-            out.append(length)
-            length=1
-            star=star+1
-            
-            
+        temp = 0
+        for i in range(len(s)):
+            length+=1
+            if temp < h[s[i]]:
+                temp = h[s[i]]
+            if i==temp:
+                out.append(length)
+                length=0
+
 
         return out
