@@ -17,9 +17,7 @@ class Solution(object):
         dp[0] = 0
         for i in range(1,amount+1):
             for coin in coins:
-                if coin==i:
-                    dp[i]=1
-                elif coin<i:
+                elif coin<=i:
                     dp[i] = min(dp[i],dp[i-coin]+1)
         for i in range(len(dp)):
             if dp[i]==float('inf'):
