@@ -1,4 +1,4 @@
-给你一个只包含 '(' 和 ')' 的字符串，找出最长有效（格式正确且连续）括号子串的长度。
+# 给你一个只包含 '(' 和 ')' 的字符串，找出最长有效（格式正确且连续）括号子串的长度。
 
 class Solution(object):
     def longestValidParentheses(self, s):
@@ -6,7 +6,7 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
-        # 检查两种情况
+        # 检查两种情况,
         # （）：dp[i-1]+2
         # （。。。）：dp[i-dp[i-1]-2]+2+dp[i-1]
         if len(s)<2:
@@ -16,7 +16,7 @@ class Solution(object):
             if s[i]==')':
                 if s[i-1]=='(':
                     dp[i]=(dp[i-2] if i>=2 else 0)+2
-                elif i-dp[i-1]-1>=0 and s[i-dp[i-1]-1]=='(':
+                elif i-dp[i-1]-1>=0 and s[i-dp[i-1]-1]=='(':##注意判断边界条件
                     dp[i]=dp[i-dp[i-1]-2 if i-dp[i-1]-2>=0 else 0]+2+dp[i-1]
         max_n=0
         for num in dp:
