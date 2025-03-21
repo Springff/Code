@@ -15,7 +15,7 @@ class Solution(object):
         """
         # 动态规划
         dp = [[0]*(len(word2)+1) for _ in range(len(word1)+1)]
-        for i in range(len(word1)+1):
+        for i in range(len(word1)+1):#dp[0][j]表示把空字符变为j的字符需要几次操作
             dp[i][0] = i
         for j in range(len(word2)+1):
             dp[0][j] = j
