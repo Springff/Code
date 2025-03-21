@@ -4,54 +4,62 @@
 
 # 不允许修改 链表
 
+class Listnode():
+    def __init__(self,val=0, next=None):
+        self.val = val
+        self.next = next 
 
-# Definition for singly-linked list.
-# class ListNode(object):
-#     def __init__(self, x):
-#         self.val = x
-#         self.next = None
+def DetectCycle(head):
+    # 快慢指针
+    if not head or not head.next:
+        return -1
+    fast,slow = head,head
 
-class Solution(object):
-    def detectCycle(self, head):
-        """
-        :type head: ListNode
-        :rtype: ListNode
-        """
-        # a:非环段路程，b:从环的起点到相遇点，c:从相遇点到环的起点
-        # 2（a+b）= a+k(b+c)+b
-        # 化简得：a=(k-1)(b+c)+c
-        # 所以一个从相遇点开始走，一个从起点开始走，会在环得起点处相遇
-
-        if not head or not head.next or not head.next.next:
-            return 
-
-        fast = head.next.next
-        slow = head.next
-
-        while fast and fast.next and fast!=slow:
-            fast = fast.next.next
-            slow = slow.next
-        if not fast or not fast.next:
-            return
-        fast = head
-        while fast!=slow:
-            fast = fast.next
-            slow = slow.next
-        return fast
+    while fast and fast.next!=None:
+        fast = fast.next.next
+        slow = slow.next
+        if fast==slow:
+            break
+    if fast!=slow:
+        return -1
+    fast = head
     
-
-    def Haxizidian(self, head):
-        """
-        :type head: ListNode
-        :rtype: ListNode
-        """
-        # 保存每个链表元素，看看是否在哈希字典中
-        dit = {}
-        p = head
-        while p:
-            if p in dit:
-                return p
-            dit[p] = True
-            p = p.next
+    while fast!=slow:
+        fast = fast.next
+        slow = slow.next
         
-        return
+    return slow
+    
+def Haxizidian(self, head):
+    """
+    :type head: ListNode
+    :rtype: ListNode
+    """
+    # 保存每个链表元素，看看是否在哈希字典中
+    dit = {}
+    p = head
+    while p:
+        if p in dit:
+            return p
+        dit[p] = True
+        p = p.next
+    
+    return
+
+s = input().split(',')
+s = list(map(int,s))
+head = Listnode()
+t = head
+for num in s:
+    p = Listnode(num)
+    t.next = p
+    t = t.next
+head = head.next
+k = int(input())
+p = head
+for i in range(k):
+    p = p.next
+t.next = p
+
+ans = DetectCycle(head)
+print(ans.val)
