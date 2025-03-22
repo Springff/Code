@@ -6,12 +6,12 @@
 # 节点的右子树只包含 大于 当前节点的数。
 # 所有左子树和右子树自身必须也是二叉搜索树。
 
-# Definition for a binary tree node.
-class TreeNode(object):
+class TreeNode():
     def __init__(self, val=0, left=None, right=None):
         self.val = val
         self.left = left
         self.right = right
+
 class Solution(object):
     def isValidBST(self, root):
         """
@@ -29,54 +29,43 @@ class Solution(object):
         if root.val>=high or root.val<=low:
             return False
         return self.Vaild(root.left,low,root.val) and self.Vaild(root.right,root.val,high) 
-from collections import deque    
-def BuildTree(nums):
-    if not nums:
+    
+from collections import deque
+def Build(s):
+    if s=='':
         return TreeNode()
-    root = TreeNode(nums[0])
+    i = 1
+    root = TreeNode(s[0])
     queue = deque([root])
-    length = len(nums)
-    k = 1
-    while k+1<length:
-        t1 = TreeNode(nums[k])
-        t2 = TreeNode(nums[k+1])
-        k = k+2
-        r = queue.popleft()
-        r.left = t1
-        r.right = t2
-        queue.append(t1)
-        queue.append(t2)
-
-    if k<length:
-        t = TreeNode(nums[k])
-        r = queue.popleft()
-        r.left = t
+    while queue and i < len(s):
+        q = queue.popleft()
+        if s[i]!='null':
+            newtree = TreeNode(int(s[i]))
+            q.left = newtree
+            queue.append(newtree)
+        i+=1
+        if i<len(s) and s[i]!='null':
+            newtree = TreeNode(int(s[i]))
+            q.right = newtree
+            queue.append(newtree)
+        i+=1
     return root
-def Levelorder(root):
+
+def LevelOrder(root):
     result = []
 
     def Level(root,level):
         if not root:
-            return
+            return 
         if len(result)==level:
             result.append([])
         result[level].append(root.val)
         Level(root.left,level+1)
         Level(root.right,level+1)
-
     Level(root,0)
     return result
 
-nums = []
-while True:
-    a = input()
-    if a=='end':
-        break
-    if a=='':
-        nums.append(None)
-    else:
-        nums.append(int(a))
-
-root = BuildTree(nums)
-result = Levelorder(root)
-print(result)
+s = input().split(',')
+root = Build(s)
+ans = LevelOrder(root)
+print(ans)
